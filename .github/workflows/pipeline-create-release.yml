@@ -1,0 +1,44 @@
+name: Create Release
+
+on:
+  release:
+    types:
+      - created
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+  DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+
+jobs:
+  generate-publish-docker:
+    name: Generate and Publish Docker Image
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Login
+        run: |
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+
+      - name: Build base images
+        run: cd Aspnet && ./build-base-images.sh
+        shell: bash
+
+      - name: Push base images
+        run: |
+          docker push jacksonveroneze/aspnet:6.0-alpine
+          docker push jacksonveroneze/aspnet:6.0-ubuntu
+          docker push jacksonveroneze/aspnet:7.0-ubuntu
+
+      - name: Build xray images
+        run: cd Aspnet && ./build-xray-images.sh
+        shell: bash
+
+      - name: Push xray images
+        run: |
+          docker push jacksonveroneze/aspnet:6.0-alpine-xray
+          docker push jacksonveroneze/aspnet:6.0-ubuntu-xray
