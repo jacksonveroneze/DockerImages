@@ -1,28 +1,25 @@
 FROM mcr.microsoft.com/dotnet/aspnet:6.0-jammy
 
+# .NET envs
 ENV ASPNETCORE_URLS=http://+:80
 ENV DOTNET_RUNNING_IN_CONTAINER=true
 ENV ASPNETCORE_ENVIRONMENT=Production
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
-ENV TZ=America/Sao_Paulo
-ENV LANG pt-BR
-ENV LANGUAGE pt-BR
 
+# User envs
 ARG USERNAME=dotnet
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
-RUN apt update && apt install -y --no-install-recommends tzdata curl wget && \
-    apt clean && apt autoclean && apt autoremove && \
-    rm -rf /var/lib/apt/lists/*
+# Build scripts
+COPY script-base.sh /
+RUN sh -x script-base.sh && rm script-base.sh
 
-RUN echo $TZ > /etc/timezone && \
-    rm /etc/localtime && \
-    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
-    dpkg-reconfigure -f noninteractive tzdata
-
-RUN groupadd --gid $USER_GID $USERNAME \
-    && useradd -r --uid $USER_UID --gid $USER_GID -m $USERNAME
+# TZ/LANG envs
+ENV TZ=America/Sao_Paulo
+ENV LC_ALL pt_BR.UTF-8
+ENV LANG pt_BR.UTF-8
+ENV LANGUAGE pt_BR.UTF-8
 
 ENV APP_DIR=/home/$USERNAME/app
 

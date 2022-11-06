@@ -1,4 +1,4 @@
-FROM jacksonveroneze/aspnet:6.0-alpine
+FROM jacksonveroneze/aspnet:7.0-ubuntu
 
 USER root
 

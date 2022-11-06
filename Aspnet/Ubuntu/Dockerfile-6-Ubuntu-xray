@@ -1,11 +1,10 @@
 FROM jacksonveroneze/aspnet:6.0-ubuntu
 
-ENV AWS_XRAY_CONTEXT_MISSING=LOG_ERROR
-
 USER root
 
-RUN curl https://s3.us-east-2.amazonaws.com/aws-xray-assets.us-east-2/xray-daemon/aws-xray-daemon-3.x.deb -o xray.deb && \
-  dpkg -i xray.deb && \
-  rm xray.deb
+COPY script-install-xray.sh /tmp
+RUN sh -x /tmp/script-install-xray.sh && rm /tmp/script-install-xray.sh
+
+ENV AWS_XRAY_CONTEXT_MISSING=LOG_ERROR
 
 USER dotnet
