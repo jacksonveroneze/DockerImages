@@ -42,3 +42,4 @@ jobs:
         run: |
           docker push jacksonveroneze/aspnet:6.0-alpine-xray
           docker push jacksonveroneze/aspnet:6.0-ubuntu-xray
+          docker push jacksonveroneze/aspnet:7.0-ubuntu-xray
