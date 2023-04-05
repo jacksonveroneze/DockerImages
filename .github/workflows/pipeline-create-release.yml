@@ -30,7 +30,7 @@ jobs:
 
       - name: Push base images
         run: |
-          docker push jacksonveroneze/aspnet:6.0-alpine
+          docker push jacksonveroneze/aspnet:7.0-alpine
           docker push jacksonveroneze/aspnet:7.0-ubuntu
 
       - name: Build xray images
@@ -39,5 +39,5 @@ jobs:
 
       - name: Push xray images
         run: |
-          docker push jacksonveroneze/aspnet:6.0-alpine-xray
+          docker push jacksonveroneze/aspnet:7.0-alpine-xray
           docker push jacksonveroneze/aspnet:7.0-ubuntu-xray

@@ -7,4 +7,4 @@ RUN sh -x /tmp/script-install-xray.sh && rm /tmp/script-install-xray.sh
 
 ENV AWS_XRAY_CONTEXT_MISSING=LOG_ERROR
 
-USER dotnet
+USER $USERNAME
