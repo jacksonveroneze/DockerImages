@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/aspnet:7.0-jammy
+FROM mcr.microsoft.com/dotnet/aspnet:7.0-bullseye-slim
 
 # .NET envs
 ENV ASPNETCORE_URLS=http://+:8080

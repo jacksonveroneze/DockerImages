@@ -32,6 +32,7 @@ jobs:
         run: |
           docker push jacksonveroneze/aspnet:7.0-alpine
           docker push jacksonveroneze/aspnet:7.0-ubuntu
+          docker push jacksonveroneze/aspnet:7.0-debian
 
       - name: Build xray images
         run: cd Aspnet && ./build-xray-images.sh
@@ -41,3 +42,4 @@ jobs:
         run: |
           docker push jacksonveroneze/aspnet:7.0-alpine-xray
           docker push jacksonveroneze/aspnet:7.0-ubuntu-xray
+          docker push jacksonveroneze/aspnet:7.0-debian-xray
