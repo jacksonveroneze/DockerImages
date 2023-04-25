@@ -30,9 +30,9 @@ jobs:
 
       - name: Push base images
         run: |
-          docker push jacksonveroneze/aspnet:7.0-alpine
-          docker push jacksonveroneze/aspnet:7.0-ubuntu
-          docker push jacksonveroneze/aspnet:7.0-debian
+          docker push jacksonveroneze/aspnet:7.0-alpine-${{ github.event.release.tag_name }}
+          docker push jacksonveroneze/aspnet:7.0-ubuntu-${{ github.event.release.tag_name }}
+          docker push jacksonveroneze/aspnet:7.0-debian-${{ github.event.release.tag_name }}
 
       - name: Build xray images
         run: cd Aspnet && ./build-xray-images.sh
@@ -40,6 +40,6 @@ jobs:
 
       - name: Push xray images
         run: |
-          docker push jacksonveroneze/aspnet:7.0-alpine-xray
-          docker push jacksonveroneze/aspnet:7.0-ubuntu-xray
-          docker push jacksonveroneze/aspnet:7.0-debian-xray
+          docker push jacksonveroneze/aspnet:7.0-alpine-xray-${{ github.event.release.tag_name }}
+          docker push jacksonveroneze/aspnet:7.0-ubuntu-xray-${{ github.event.release.tag_name }}
+          docker push jacksonveroneze/aspnet:7.0-debian-xray-${{ github.event.release.tag_name }}

@@ -3,7 +3,9 @@ FROM jacksonveroneze/aspnet:7.0-ubuntu
 USER root
 
 COPY script-install-xray.sh /tmp
-RUN sh -x /tmp/script-install-xray.sh && rm /tmp/script-install-xray.sh
+
+RUN sh -x /tmp/script-install-xray.sh && \
+    rm /tmp/script-install-xray.sh
 
 ENV AWS_XRAY_CONTEXT_MISSING=LOG_ERROR
 
