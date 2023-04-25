@@ -30,9 +30,9 @@ jobs:
 
       - name: Push base images
         run: |
-          docker tag jacksonveroneze/aspnet:7.0-alpine:latest jacksonveroneze/aspnet:7.0-alpine-${{ github.event.release.tag_name }}
-          docker tag jacksonveroneze/aspnet:7.0-ubuntu:latest jacksonveroneze/aspnet:7.0-ubuntu-${{ github.event.release.tag_name }}
-          docker tag jacksonveroneze/aspnet:7.0-debian:latest jacksonveroneze/aspnet:7.0-debian-${{ github.event.release.tag_name }}
+          docker tag jacksonveroneze/aspnet:7.0-alpine jacksonveroneze/aspnet:7.0-alpine-${{ github.event.release.tag_name }}
+          docker tag jacksonveroneze/aspnet:7.0-ubuntu jacksonveroneze/aspnet:7.0-ubuntu-${{ github.event.release.tag_name }}
+          docker tag jacksonveroneze/aspnet:7.0-debian jacksonveroneze/aspnet:7.0-debian-${{ github.event.release.tag_name }}
           
           docker push jacksonveroneze/aspnet:7.0-alpine-${{ github.event.release.tag_name }}          
           docker push jacksonveroneze/aspnet:7.0-ubuntu-${{ github.event.release.tag_name }}
@@ -44,9 +44,9 @@ jobs:
 
       - name: Push xray images
         run: |
-          docker tag jacksonveroneze/aspnet:7.0-alpine-xray:latest jacksonveroneze/aspnet:7.0-alpine-xray-${{ github.event.release.tag_name }}
-          docker tag jacksonveroneze/aspnet:7.0-ubuntu-xray:latest jacksonveroneze/aspnet:7.0-ubuntu-xray-${{ github.event.release.tag_name }}
-          docker tag jacksonveroneze/aspnet:7.0-debian-xray:latest jacksonveroneze/aspnet:7.0-debian-xray-${{ github.event.release.tag_name }}
+          docker tag jacksonveroneze/aspnet:7.0-alpine-xray jacksonveroneze/aspnet:7.0-alpine-xray-${{ github.event.release.tag_name }}
+          docker tag jacksonveroneze/aspnet:7.0-ubuntu-xray jacksonveroneze/aspnet:7.0-ubuntu-xray-${{ github.event.release.tag_name }}
+          docker tag jacksonveroneze/aspnet:7.0-debian-xray jacksonveroneze/aspnet:7.0-debian-xray-${{ github.event.release.tag_name }}
           
           docker push jacksonveroneze/aspnet:7.0-alpine-xray-${{ github.event.release.tag_name }}
           docker push jacksonveroneze/aspnet:7.0-ubuntu-xray-${{ github.event.release.tag_name }}
