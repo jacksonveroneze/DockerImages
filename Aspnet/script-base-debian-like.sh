@@ -14,5 +14,5 @@ dpkg-reconfigure -f noninteractive locales && \
 update-locale LANG=pt_BR.UTF-8 LANGUAGE="pt_BR:pt:en" && \
 dpkg-reconfigure -f noninteractive tzdata
 
-groupadd --gid $USER_GID $USERNAME \
-    && useradd -r --uid $USER_UID --gid $USER_GID -m $USERNAME
+groupadd --gid 1000 $USERNAME \
+    && useradd -r --uid 1000 --gid 1000 -m $USERNAME
