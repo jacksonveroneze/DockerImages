@@ -2,11 +2,15 @@ FROM jacksonveroneze/aspnet:7.0-ubuntu
 
 USER root
 
-COPY script-install-xray.sh /tmp
-
-RUN sh -x /tmp/script-install-xray.sh && \
-    rm /tmp/script-install-xray.sh
-
-ENV AWS_XRAY_CONTEXT_MISSING=LOG_ERROR
+# Build scripts
+COPY script-install-xray-debian-like.sh /tmp/script-install-xray.sh
+RUN sh -x /tmp/script-install-xray.sh && rm /tmp/script-install-xray.sh
 
 USER $USERNAME
+
+# envs
+ENV AWS_XRAY_CONTEXT_MISSING=LOG_ERROR
+
+COPY docker-entrypoint-xray.sh $APP_DIR/docker-entrypoint.sh
+
+ENTRYPOINT ["/bin/sh", "docker-entrypoint.sh"]

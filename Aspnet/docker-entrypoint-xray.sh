@@ -6,6 +6,8 @@ echo "- System Operation: $OS"
 echo "- EnvironmentName: $ASPNETCORE_ENVIRONMENT"
 echo "- AspNetCoreUrls: $ASPNETCORE_URLS"
 echo ""
-echo "- Run application: $APP_NAME"
+echo "- Run X-Ray"
+/usr/bin/xray -f /var/log/xray-daemon.log &
 echo ""
+echo "- Run application: $APP_NAME"
 dotnet $APP_NAME

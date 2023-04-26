@@ -2,17 +2,17 @@
 
 apt update && \
 apt upgrade -y && \
-apt install -y --no-install-recommends locales tzdata curl wget && \
+apt install -y --no-install-recommends locales curl tzdata && \
 apt clean && apt autoclean && apt autoremove && \
 rm -rf /var/lib/apt/lists/*
 
 echo $TZ > /etc/timezone && \
-rm /etc/localtime && \
-ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
-locale-gen pt_BR.UTF-8 && \
-dpkg-reconfigure -f noninteractive locales && \
-update-locale LANG=pt_BR.UTF-8 LANGUAGE="pt_BR:pt:en" && \
+ln -snf /usr/share/zoneinfo/$TZ /etc/localtime  && \
 dpkg-reconfigure -f noninteractive tzdata
 
-groupadd --gid 1000 $USERNAME \
-    && useradd -r --uid 1000 --gid 1000 -m $USERNAME
+echo "locales locales/locales_to_be_generated multiselect pt_BR.UTF-8 UTF-8" | debconf-set-selections  && \
+rm /etc/locale.gen  && \
+dpkg-reconfigure --frontend noninteractive locales
+
+groupadd --gid 1000 $USERNAME && \
+useradd -r --uid 1000 --gid 1000 -m $USERNAME
