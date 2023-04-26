@@ -25,7 +25,7 @@ jobs:
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
       - name: Build base images
-        run: cd Aspnet-base && ./build-base-images.sh
+        run: cd Aspnet/Base && ./build.sh
         shell: bash
 
       - name: Push base images
@@ -39,7 +39,7 @@ jobs:
           docker push jacksonveroneze/aspnet:7.0-debian-${{ github.event.release.tag_name }}
 
       - name: Build xray images
-        run: cd Aspnet-xray && ./build-xray-images.sh
+        run: cd Aspnet/X-Ray && ./build.sh
         shell: bash
 
       - name: Push xray images

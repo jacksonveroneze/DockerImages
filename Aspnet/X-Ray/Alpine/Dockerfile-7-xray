@@ -11,6 +11,6 @@ USER $USERNAME
 # envs
 ENV AWS_XRAY_CONTEXT_MISSING=LOG_ERROR
 
-COPY docker-entrypoint-xray.sh $APP_DIR/docker-entrypoint.sh
+COPY docker-entrypoint.sh $APP_DIR
 
 ENTRYPOINT ["/bin/sh", "docker-entrypoint.sh"]

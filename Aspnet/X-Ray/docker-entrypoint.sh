@@ -2,10 +2,13 @@
 
 OS=$(cat /etc/*-release | egrep "PRETTY_NAME" | cut -d = -f 2 | tr -d '"')
 
-echo "- System Operation: $OS"
+echo "- SystemOperation: $OS"
 echo "- EnvironmentName: $ASPNETCORE_ENVIRONMENT"
 echo "- AspNetCoreUrls: $ASPNETCORE_URLS"
+echo "- ApplicationName: $APP_NAME"
 echo ""
-echo "- Run application: $APP_NAME"
+echo "- Run x-ray"
+/usr/bin/xray -f /var/log/xray-daemon.log &
 echo ""
+echo "- Start application"
 dotnet $APP_NAME
