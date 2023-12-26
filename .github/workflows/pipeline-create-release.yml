@@ -32,11 +32,3 @@ jobs:
           ./create-tag.sh
           ./push.sh
         shell: bash
-
-      - name: X-Ray - Build and Push
-        run: |
-          cd Aspnet/X-Ray
-          ./build.sh
-          ./create-tag.sh
-          ./push.sh
-        shell: bash
