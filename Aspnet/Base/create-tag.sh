@@ -1,10 +1,9 @@
 #!/bin/bash
 
-#Alpine
-docker tag jacksonveroneze/aspnet:7.0-alpine jacksonveroneze/aspnet:7.0-alpine-$RELEASE
+RELEASE="${RELEASE=latest}"
 
-#Ubuntu
-docker tag jacksonveroneze/aspnet:7.0-ubuntu jacksonveroneze/aspnet:7.0-ubuntu-$RELEASE
+#Alpine
+docker tag jacksonveroneze/aspnet:8.0-alpine jacksonveroneze/aspnet:8.0-alpine-$RELEASE
 
 #Debian
-docker tag jacksonveroneze/aspnet:7.0-debian jacksonveroneze/aspnet:7.0-debian-$RELEASE
+docker tag jacksonveroneze/aspnet:8.0-debian jacksonveroneze/aspnet:8.0-debian-$RELEASE

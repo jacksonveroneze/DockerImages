@@ -1,10 +1,9 @@
 #!/bin/bash
 
-#Alpine
-docker push jacksonveroneze/aspnet:7.0-alpine-$RELEASE
+RELEASE="${RELEASE=latest}"
 
-#Ubuntu
-docker push jacksonveroneze/aspnet:7.0-ubuntu-$RELEASE
+#Alpine
+docker push jacksonveroneze/aspnet:8.0-alpine-$RELEASE
 
 #Debian
-docker push jacksonveroneze/aspnet:7.0-debian-$RELEASE
+docker push jacksonveroneze/aspnet:8.0-debian-$RELEASE

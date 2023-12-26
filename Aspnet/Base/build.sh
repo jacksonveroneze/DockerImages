@@ -1,10 +1,7 @@
 #!/bin/bash
 
 #Alpine
-docker build -f ./Alpine/Dockerfile-7 -t jacksonveroneze/aspnet:7.0-alpine .
-
-#Ubuntu
-docker build -f ./Ubuntu/Dockerfile-7 -t jacksonveroneze/aspnet:7.0-ubuntu .
+docker build -f ./Alpine/Dockerfile -t jacksonveroneze/aspnet:8.0-alpine .
 
 #Debian
-docker build -f ./Debian/Dockerfile-7 -t jacksonveroneze/aspnet:7.0-debian .
+docker build -f ./Debian/Dockerfile -t jacksonveroneze/aspnet:8.0-debian .
