@@ -6,8 +6,8 @@ APP_NAME=$(find . -type f -name "*deps.json" | xargs)
 APP_NAME=$(echo $APP_NAME | xargs | sed -e "s/.\///g;s/.deps.json/\.dll/g")
 
 echo "- SystemOperation: $OS"
-echo "- Environment: $DOTNET_ENVIRONMENT"
+echo "- Environment: $ASPNETCORE_ENVIRONMENT"
 echo ""
 echo "- Run application: $APP_NAME"
-
+echo ""
 dotnet  $APP_NAME

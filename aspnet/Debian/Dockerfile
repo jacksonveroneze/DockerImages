@@ -5,7 +5,7 @@ ENV ASPNETCORE_ENVIRONMENT=Production
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 
 # TZ/LANG envs
-ENV TZ=America/Sao_Paulo
+ENV TZ America/Sao_Paulo
 ENV LANG pt_BR.UTF-8
 ENV LANGUAGE pt_BR.UTF-8
 ENV LC_ALL pt_BR.UTF-8
@@ -25,8 +25,6 @@ RUN echo "locales locales/locales_to_be_generated multiselect pt_BR.UTF-8 UTF-8"
     dpkg-reconfigure --frontend noninteractive locales
 
 COPY docker-entrypoint.sh /home/app
-
-EXPOSE $ASPNETCORE_HTTP_PORTS/tcp
 
 USER app
 

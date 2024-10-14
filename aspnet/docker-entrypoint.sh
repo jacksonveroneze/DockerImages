@@ -10,5 +10,5 @@ echo "- Environment: $ASPNETCORE_ENVIRONMENT"
 echo "- AspNetCorePorts: $ASPNETCORE_HTTP_PORTS"
 echo ""
 echo "- Run application: $APP_NAME"
-
+echo ""
 dotnet  $APP_NAME
