@@ -25,7 +25,15 @@ jobs:
         run: |
           echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
-      - name: Base - Build and Push
+      - name: Build and Push (net)
+        run: |
+          cd net
+          ./build.sh
+          ./create-tag.sh
+          ./push.sh
+        shell: bash
+
+      - name: Build and Push (asp.net)
         run: |
           cd Aspnet/Base
           ./build.sh
