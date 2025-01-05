@@ -5,10 +5,10 @@ ENV DOTNET_ENVIRONMENT=Production
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 
 # TZ/LANG envs
-ENV TZ America/Sao_Paulo
-ENV LANG pt_BR.UTF-8
-ENV LANGUAGE pt_BR.UTF-8
-ENV LC_ALL pt_BR.UTF-8
+ENV TZ=America/Sao_Paulo
+ENV LANG=pt_BR.UTF-8
+ENV LANGUAGE=pt_BR.UTF-8
+ENV LC_ALL=pt_BR.UTF-8
 
 RUN apt update && \
     apt upgrade -y && \

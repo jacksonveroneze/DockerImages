@@ -2,13 +2,15 @@
 
 OS=$(cat /etc/*-release | egrep "PRETTY_NAME" | cut -d = -f 2 | tr -d '"')
 
-APP_NAME=$(find . -type f -name "*deps.json" | xargs)
-APP_NAME=$(echo $APP_NAME | xargs | sed -e "s/.\///g;s/.deps.json/\.dll/g")
+if [ -z "$ASSEMBLY_NAME" ]; then
+  ASSEMBLY_NAME=$(find . -type f -name "*deps.json" | xargs)
+  ASSEMBLY_NAME=$(echo "$ASSEMBLY_NAME" | xargs | sed -e "s#\./##g; s#\.deps\.json#.dll#g")
+fi
 
-echo "- SystemOperation: $OS"
-echo "- Environment: $ASPNETCORE_ENVIRONMENT"
-echo "- AspNetCorePorts: $ASPNETCORE_HTTP_PORTS"
+echo "- SYSTEM_OPERATION: $OS"
+echo "- ASPNETCORE_ENVIRONMENT: $ASPNETCORE_ENVIRONMENT"
+echo "- ASPNETCORE_HTTP_PORTS: $ASPNETCORE_HTTP_PORTS"
 echo ""
-echo "- Run application: $APP_NAME"
+echo "- Run application: $ASSEMBLY_NAME"
 echo ""
-dotnet  $APP_NAME
+dotnet $ASSEMBLY_NAME

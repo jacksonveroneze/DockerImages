@@ -1,14 +1,14 @@
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-bookworm-slim
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-bookworm-slim
 
 # .NET envs
 ENV ASPNETCORE_ENVIRONMENT=Production
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 
 # TZ/LANG envs
-ENV TZ America/Sao_Paulo
-ENV LANG pt_BR.UTF-8
-ENV LANGUAGE pt_BR.UTF-8
-ENV LC_ALL pt_BR.UTF-8
+ENV TZ=America/Sao_Paulo
+ENV LANG=pt_BR.UTF-8
+ENV LANGUAGE=pt_BR.UTF-8
+ENV LC_ALL=pt_BR.UTF-8
 
 RUN apt update && \
     apt upgrade -y && \

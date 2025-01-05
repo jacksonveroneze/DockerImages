@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine
 
 # .NET envs
 ENV ASPNETCORE_ENVIRONMENT=Production
@@ -6,9 +6,9 @@ ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 
 # TZ/LANG envs
 ENV TZ=America/Sao_Paulo
-ENV LANG pt_BR.UTF-8
-ENV LANGUAGE pt_BR.UTF-8
-ENV LC_ALL pt_BR.UTF-8
+ENV LANG=pt_BR.UTF-8
+ENV LANGUAGE=pt_BR.UTF-8
+ENV LC_ALL=pt_BR.UTF-8
 
 RUN apk update && \
     apk upgrade && \
