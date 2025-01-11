@@ -8,6 +8,7 @@ if [ -z "$ASSEMBLY_NAME" ]; then
 fi
 
 echo "- SYSTEM_OPERATION: $OS"
+echo "- LANG: $LANG"
 echo "- ASPNETCORE_ENVIRONMENT: $ASPNETCORE_ENVIRONMENT"
 echo ""
 echo "- Run application: $ASSEMBLY_NAME"

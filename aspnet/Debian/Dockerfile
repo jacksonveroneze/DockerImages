@@ -20,11 +20,14 @@ RUN echo $TZ > /etc/timezone && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime  && \
     dpkg-reconfigure -f noninteractive tzdata
 
-RUN echo "locales locales/locales_to_be_generated multiselect pt_BR.UTF-8 UTF-8" | debconf-set-selections  && \
-    rm /etc/locale.gen  && \
-    dpkg-reconfigure --frontend noninteractive locales
+RUN sed -i '/^# *pt_BR.UTF-8 UTF-8/s/^# //' /etc/locale.gen && \
+    locale-gen pt_BR.UTF-8 && \
+    update-locale LANG=pt_BR.UTF-8
 
 COPY docker-entrypoint.sh /home/app
+
+RUN chmod +x docker-entrypoint.sh && \
+    chown -R app:app /home/app
 
 USER app
 
