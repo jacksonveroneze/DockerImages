@@ -26,7 +26,7 @@ RUN sed -i '/^# *pt_BR.UTF-8 UTF-8/s/^# //' /etc/locale.gen && \
 
 COPY docker-entrypoint.sh /home/app
 
-RUN chmod +x docker-entrypoint.sh && \
+RUN chmod +x /home/app/docker-entrypoint.sh && \
     chown -R app:app /home/app
 
 USER app
