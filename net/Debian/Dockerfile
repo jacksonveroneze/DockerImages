@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/runtime:8.0-bookworm-slim
+FROM mcr.microsoft.com/dotnet/runtime:9.0-bookworm-slim
 
 # .NET envs
 ENV DOTNET_ENVIRONMENT=Production
