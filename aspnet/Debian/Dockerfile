@@ -1,36 +1,42 @@
 FROM mcr.microsoft.com/dotnet/aspnet:9.0-bookworm-slim
 
-# .NET envs
-ENV ASPNETCORE_ENVIRONMENT=Production
-ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
+# Labels
+LABEL org.opencontainers.image.title="aspnet-base"
+LABEL org.opencontainers.image.description="Base ASP.NET minimal com ICU, TZ e healthcheck"
+LABEL org.opencontainers.image.licenses="MIT"
 
-# TZ/LANG envs
-ENV TZ=America/Sao_Paulo
-ENV LANG=pt_BR.UTF-8
-ENV LANGUAGE=pt_BR.UTF-8
-ENV LC_ALL=pt_BR.UTF-8
+# .NET envs + TZ/LANG envs
+ENV ASPNETCORE_ENVIRONMENT=Production \
+    DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false \
+    CORECLR_ENABLE_PROFILING=0 \
+    TZ=America/Sao_Paulo \
+    LANG=pt_BR.UTF-8 \
+    LANGUAGE=pt_BR.UTF-8 \
+    LC_ALL=pt_BR.UTF-8
 
-RUN apt update && \
-    apt upgrade -y && \
-    apt install -y --no-install-recommends locales curl && \
-    apt clean && apt autoclean && apt autoremove -y && \
-    rm -rf /var/lib/apt/lists/*
+# Dependências essenciais + TZ + Locale
+RUN set -eux; \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+        tzdata \
+        locales \
+        ca-certificates \
+        curl \
+    && ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && dpkg-reconfigure -f noninteractive tzdata \
+    && sed -i '/^# *pt_BR.UTF-8 UTF-8/s/^# //' /etc/locale.gen \
+    && locale-gen pt_BR.UTF-8 \
+    && update-locale LANG=pt_BR.UTF-8 \
+    && update-ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN echo $TZ > /etc/timezone && \
-    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime  && \
-    dpkg-reconfigure -f noninteractive tzdata
+COPY --chown=app:app docker-entrypoint.sh /home/app/docker-entrypoint.sh
 
-RUN sed -i '/^# *pt_BR.UTF-8 UTF-8/s/^# //' /etc/locale.gen && \
-    locale-gen pt_BR.UTF-8 && \
-    update-locale LANG=pt_BR.UTF-8
-
-COPY docker-entrypoint.sh /home/app
-
-RUN chmod +x /home/app/docker-entrypoint.sh && \
-    chown -R app:app /home/app
+HEALTHCHECK --interval=10s --timeout=1s --start-period=5s --retries=3 \
+  CMD curl --silent --fail http://localhost:8080/health?source=docker-inner || exit 1
 
 USER app
 
 WORKDIR /home/app
 
-ENTRYPOINT ["/bin/sh", "docker-entrypoint.sh"]
+ENTRYPOINT ["/home/app/docker-entrypoint.sh"]

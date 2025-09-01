@@ -1,16 +1,27 @@
-#!/bin/sh
-
-OS=$(cat /etc/*-release | egrep "PRETTY_NAME" | cut -d = -f 2 | tr -d '"')
+#!/bin/sh -eu
 
 if [ -z "$ASSEMBLY_NAME" ]; then
-  ASSEMBLY_NAME=$(find . -type f -name "*deps.json" | xargs)
-  ASSEMBLY_NAME=$(echo "$ASSEMBLY_NAME" | xargs | sed -e "s#\./##g; s#\.deps\.json#.dll#g")
+  ASSEMBLY_NAME=$(find . -maxdepth 1 -type f -name "*deps.json" | head -n1 | sed -e "s#\.deps\.json#.dll#g" || true)
 fi
 
+if [ -z "$ASSEMBLY_NAME" ]; then
+  echo "Nenhum assembly encontrado (.dll). Defina ASSEMBLY_NAME ou verifique build."
+  exit 1
+fi
+
+OS=$(grep PRETTY_NAME /etc/os-release | cut -d= -f2 | tr -d '"')
+
+echo "-------------------------------------------"
+echo "Starting .NET Application"
+echo ""
 echo "- SYSTEM_OPERATION: $OS"
 echo "- LANG: $LANG"
-echo "- ASPNETCORE_ENVIRONMENT: $ASPNETCORE_ENVIRONMENT"
+echo "- DOTNET_ENVIRONMENT: $DOTNET_ENVIRONMENT"
+echo "- USER: $(id -u -n)"
+echo "- DATE: $(date -u)"
 echo ""
 echo "- Run application: $ASSEMBLY_NAME"
+echo "-------------------------------------------"
 echo ""
-dotnet $ASSEMBLY_NAME
+
+exec dotnet "$ASSEMBLY_NAME"
