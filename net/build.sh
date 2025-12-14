@@ -1,4 +1,4 @@
 #!/bin/bash
 
-#Debian
-docker build -f ./Debian/Dockerfile -t jacksonveroneze/net:9.0-debian .
+#Ubuntu
+docker build -f ./Ubuntu/Dockerfile -t jacksonveroneze/net:10.0-ubuntu .

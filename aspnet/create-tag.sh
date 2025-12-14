@@ -3,7 +3,7 @@
 RELEASE="${RELEASE=latest}"
 
 #Alpine
-docker tag jacksonveroneze/aspnet:9.0-alpine jacksonveroneze/aspnet:9.0-alpine-$RELEASE
+docker tag jacksonveroneze/aspnet:10.0-alpine jacksonveroneze/aspnet:10.0-alpine-$RELEASE
 
-#Debian
-docker tag jacksonveroneze/aspnet:9.0-debian jacksonveroneze/aspnet:9.0-debian-$RELEASE
+#Ubuntu
+docker tag jacksonveroneze/aspnet:10.0-ubuntu jacksonveroneze/aspnet:10.0-ubuntu-$RELEASE

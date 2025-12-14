@@ -2,5 +2,5 @@
 
 RELEASE="${RELEASE=latest}"
 
-#Debian
-docker tag jacksonveroneze/net:9.0-debian jacksonveroneze/net:9.0-debian-$RELEASE
+#Ubuntu
+docker tag jacksonveroneze/net:10.0-ubuntu jacksonveroneze/net:10.0-ubuntu-$RELEASE

@@ -2,5 +2,5 @@
 
 RELEASE="${RELEASE=latest}"
 
-#Debian
-docker push jacksonveroneze/net:9.0-debian-$RELEASE
+#Ubuntu
+docker push jacksonveroneze/net:10.0-ubuntu-$RELEASE
