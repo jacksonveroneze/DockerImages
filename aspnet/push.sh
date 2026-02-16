@@ -7,3 +7,4 @@ docker push jacksonveroneze/aspnet:10.0-alpine-$RELEASE
 
 #Ubuntu
 docker push jacksonveroneze/aspnet:10.0-ubuntu-$RELEASE
+docker push jacksonveroneze/aspnet:10.0-ubuntu-noble-chiseled-extra-$RELEASE

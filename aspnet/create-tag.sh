@@ -7,3 +7,4 @@ docker tag jacksonveroneze/aspnet:10.0-alpine jacksonveroneze/aspnet:10.0-alpine
 
 #Ubuntu
 docker tag jacksonveroneze/aspnet:10.0-ubuntu jacksonveroneze/aspnet:10.0-ubuntu-$RELEASE
+docker tag jacksonveroneze/aspnet:10.0-ubuntu-noble-chiseled-extra jacksonveroneze/aspnet:10.0-ubuntu-noble-chiseled-extra-$RELEASE

@@ -1,0 +1,16 @@
+FROM mcr.microsoft.com/dotnet/aspnet:10.0-noble-chiseled-extra
+
+# Labels
+LABEL org.opencontainers.image.title="aspnet-base"
+LABEL org.opencontainers.image.licenses="MIT"
+
+# .NET envs + TZ/LANG envs
+ENV ASPNETCORE_ENVIRONMENT=Production \
+    DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false \
+    CORECLR_ENABLE_PROFILING=0 \
+    TZ=America/Sao_Paulo \
+    LANG=pt_BR.UTF-8 \
+    LANGUAGE=pt_BR.UTF-8 \
+    LC_ALL=pt_BR.UTF-8
+
+USER $APP_UID
